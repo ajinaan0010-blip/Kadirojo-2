@@ -40,7 +40,7 @@ function showToast(message) {
         box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
     `;
     document.body.appendChild(toast);
-    
+
     setTimeout(() => {
         toast.style.animation = 'slideOut 0.3s ease-out forwards';
         setTimeout(() => toast.remove(), 300);
@@ -62,7 +62,7 @@ function toggleStatDetail(element) {
 function toggleAboutExpanded() {
     const expanded = document.getElementById('about-expanded');
     const intro = document.querySelector('.about-intro');
-    
+
     if (expanded.style.display === 'none') {
         expanded.style.display = 'block';
         intro.style.backgroundColor = 'rgba(0, 119, 190, 0.05)';
@@ -81,12 +81,12 @@ function highlightLocation(element) {
 
 function expandCard(element) {
     const isExpanded = element.classList.contains('expanded');
-    
+
     // Remove expanded class from all items
     document.querySelectorAll('.about-item').forEach(item => {
         item.classList.remove('expanded');
     });
-    
+
     // Add expanded class to clicked item if not already expanded
     if (!isExpanded) {
         element.classList.add('expanded');
@@ -102,14 +102,14 @@ const stories = [
         caption: 'Gotong Royong'
     },
     {
-        image: 'Kadirojo-2/images/image 2.jpeg',
+        image: 'images/image 2.jpeg',
         title: 'Gotong royong',
-        caption: 'kamKebersamaaan masyarakat desa'
+        caption: 'Kebersamaan masyarakat desa'
     },
     {
         image: 'images/image 1.jpeg',
         title: 'Gotong royong',
-        caption: 'Kebersamaaan masyarakat desa'
+        caption: 'Kebersamaan masyarakat desa'
     },
     {
         image: 'images/image 3.jpeg',
@@ -125,16 +125,16 @@ let storyProgress = 0;
 function showStory(index) {
     currentStory = index;
     const story = stories[index];
-    
+
     document.getElementById('story-image').src = story.image;
     document.getElementById('story-title').textContent = story.title;
     document.getElementById('story-caption').textContent = story.caption;
-    
+
     // Update dots
     document.querySelectorAll('.dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
     });
-    
+
     // Reset progress animation
     const progressBar = document.querySelector('.story-progress-fill');
     progressBar.style.animation = 'none';
@@ -179,7 +179,7 @@ function resumeAutoPlay() {
 function fetchWeather() {
     const latitude = -7.759056;
     const longitude = 110.448001;
-    
+
     fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m&temperature_unit=celsius`)
         .then(res => res.json())
         .then(data => {
@@ -194,15 +194,15 @@ function updateWeather(temp, humidity, code, wind) {
     document.getElementById('weather-humidity').textContent = humidity;
     document.getElementById('weather-wind').textContent = Math.round(wind);
     document.getElementById('temp-display').textContent = Math.round(temp) + '°C';
-    
+
     updateWeatherIcon(code);
     document.getElementById('weather-desc').textContent = getWeatherDescription(code);
-    
+
     // Update weather card display
     document.getElementById('weather-temp-display').textContent = Math.round(temp) + '°C';
     document.getElementById('weather-status').textContent = getWeatherDescription(code);
     updateWeatherIconDisplay(code);
-    
+
     // Update floating weather widget
     document.getElementById('floating-temp').textContent = Math.round(temp) + '°C';
     const floatingIcon = document.getElementById('floating-weather-icon');
@@ -288,10 +288,10 @@ let mapInstance = null;
 function initializeSmallMap() {
     const mapContainer = document.getElementById('map-container');
     if (!mapContainer || mapContainer.querySelector('.leaflet-container')) return;
-    
+
     const latitude = -7.759056;
     const longitude = 110.448001;
-    
+
     const map = L.map('map-container', {
         dragging: true,
         touchZoom: true,
@@ -300,11 +300,11 @@ function initializeSmallMap() {
         zoomControl: true,
         attributionControl: false
     }).setView([latitude, longitude], 15);
-    
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         maxZoom: 19
     }).addTo(map);
-    
+
     L.marker([latitude, longitude]).addTo(map);
 }
 
@@ -321,7 +321,7 @@ function openMapFullscreen() {
         display: flex;
         flex-direction: column;
     `;
-    
+
     const closeBtn = document.createElement('button');
     closeBtn.style.cssText = `
         position: absolute;
@@ -342,7 +342,7 @@ function openMapFullscreen() {
     `;
     closeBtn.innerHTML = '✕';
     closeBtn.onclick = () => overlay.remove();
-    
+
     const mapContainer = document.createElement('div');
     mapContainer.id = 'map-fullscreen';
     mapContainer.style.cssText = `
@@ -350,11 +350,11 @@ function openMapFullscreen() {
         width: 100%;
         height: 100%;
     `;
-    
+
     overlay.appendChild(closeBtn);
     overlay.appendChild(mapContainer);
     document.body.appendChild(overlay);
-    
+
     setTimeout(() => {
         const fullscreenMap = L.map('map-fullscreen', {
             dragging: true,
@@ -364,12 +364,12 @@ function openMapFullscreen() {
             zoomControl: true,
             attributionControl: true
         }).setView([-7.759056, 110.448001], 15);
-        
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(fullscreenMap);
-        
+
         L.marker([-7.759056, 110.448001], {
             title: 'Desa Kadirojo 2'
         }).addTo(fullscreenMap)
@@ -381,7 +381,7 @@ function openMapFullscreen() {
                 { maxWidth: 250 }
             )
             .openPopup();
-        
+
         L.circle([-7.759056, 110.448001], {
             color: '#0077be',
             fillColor: '#0077be',
@@ -390,7 +390,7 @@ function openMapFullscreen() {
             radius: 1000,
             dashArray: '5, 5'
         }).addTo(fullscreenMap);
-        
+
         fullscreenMap.invalidateSize();
     }, 100);
 }
@@ -399,13 +399,13 @@ function openMapFullscreen() {
 function toggleAnswer(element) {
     const faqItem = element.closest('.faq-item');
     const answer = faqItem.querySelector('.faq-answer');
-    
+
     document.querySelectorAll('.faq-item').forEach(item => {
         if (item !== faqItem) {
             item.classList.remove('active');
         }
     });
-    
+
     faqItem.classList.toggle('active');
 }
 
@@ -414,7 +414,7 @@ function openInfoModal(element) {
     const img = element.querySelector('img');
     const modal = document.getElementById('info-modal');
     const modalImage = document.getElementById('info-modal-image');
-    
+
     modalImage.src = img.src;
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -424,14 +424,14 @@ function closeInfoModal(event) {
     if (event && event.type === 'click' && event.target.id !== 'info-modal') {
         return;
     }
-    
+
     const modal = document.getElementById('info-modal');
     modal.classList.remove('active');
     document.body.style.overflow = 'auto';
 }
 
 // Close modal on Escape key
-document.addEventListener('keydown', function(event) {
+document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
         closeInfoModal();
     }
@@ -443,7 +443,7 @@ function initializeScrollAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -452,12 +452,12 @@ function initializeScrollAnimations() {
             }
         });
     }, observerOptions);
-    
+
     document.querySelectorAll('.about h2, .services h2, .stories-section h2, .weather-section h2, .faq-section h2, .map-section h2, .contact h2').forEach(el => {
         el.style.opacity = '0';
         observer.observe(el);
     });
-    
+
     document.querySelectorAll('.about-item, .service-card, .faq-item, .info-card').forEach((el, index) => {
         el.style.opacity = '0';
         el.style.animationDelay = (index * 0.1) + 's';
@@ -466,26 +466,26 @@ function initializeScrollAnimations() {
 }
 
 // ============ NAVBAR MANAGEMENT ============
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
-    
+
     if (hamburger) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
         });
     }
-    
+
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
         });
     });
-    
+
     // Initialize stories
     showStory(0);
     startAutoPlay();
-    
+
     const storyViewer = document.querySelector('.story-viewer');
     if (storyViewer) {
         storyViewer.addEventListener('mouseenter', pauseAutoPlay);
@@ -493,13 +493,13 @@ document.addEventListener('DOMContentLoaded', function() {
         storyViewer.addEventListener('touchstart', pauseAutoPlay);
         storyViewer.addEventListener('touchend', resumeAutoPlay);
     }
-    
+
     // Fetch weather
     fetchWeather();
-    
+
     // Initialize map
     setTimeout(initializeSmallMap, 500);
-    
+
     // Initialize scroll animations
     initializeScrollAnimations();
 });
@@ -528,9 +528,9 @@ function updateWeatherIconDisplay(code) {
         document.getElementById('weather-icon-main'),
         document.getElementById('weather-icon-modal')
     ];
-    
+
     let icon = 'fas fa-cloud';
-    
+
     if (code === 0) icon = 'fas fa-sun';
     else if (code === 1 || code === 2) icon = 'fas fa-cloud-sun';
     else if (code === 3) icon = 'fas fa-cloud';
@@ -540,7 +540,7 @@ function updateWeatherIconDisplay(code) {
     else if ([80, 81, 82].includes(code)) icon = 'fas fa-cloud-showers-heavy';
     else if ([85, 86].includes(code)) icon = 'fas fa-cloud-showers-heavy';
     else if ([95, 96, 99].includes(code)) icon = 'fas fa-bolt';
-    
+
     iconElements.forEach(elem => {
         if (elem) {
             elem.className = icon;

@@ -1638,95 +1638,7 @@ body {
     opacity: 1;
 }
 
-/* ============ INFO MODAL ============ */
-.info-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(3px);
-    animation: fadeInModal 0.3s ease;
-}
 
-.info-modal.active {
-    display: flex;
-}
-
-@keyframes fadeInModal {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.info-modal-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90vh;
-    background: white;
-    border-radius: 12px;
-    overflow: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideInModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes slideInModal {
-    from {
-        transform: scale(0.9);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.info-modal-close {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 32px;
-    color: var(--primary-color);
-    cursor: pointer;
-    background: white;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    z-index: 2001;
-    border: 2px solid var(--primary-color);
-}
-
-.info-modal-close:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: rotate(90deg);
-}
-
-#info-modal-image {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-font-size: 18px;
-font-weight: 600;
-color: var(--text-color);
-margin: 0;
-}
 
 /* ============ MAP SECTION ============ */
 .map-section {
@@ -2024,7 +1936,7 @@ margin: 0;
     width: 100%;
     max-width: 500px;
 }
-}
+
 
 .contact-form-wrapper:hover {
     box-shadow: 0 15px 50px rgba(0, 119, 190, 0.18), inset 0 1px 1px rgba(255, 255, 255, 0.4);
@@ -3609,70 +3521,70 @@ header p {
     .btn-whatsapp-direct {
         width: 100%;
     }
-}
 
-.quick-contact {
-    gap: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 30px 20px;
-}
 
-.icon-wrapper {
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
-}
+    .quick-contact {
+        gap: 20px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 30px 20px;
+    }
 
-.icon-label {
-    font-size: 10px;
-}
+    .icon-wrapper {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
 
-.hero {
-    padding: 80px 15px 60px;
-}
+    .icon-label {
+        font-size: 10px;
+    }
 
-.hero-title {
-    font-size: 36px;
-}
+    .hero {
+        padding: 80px 15px 60px;
+    }
 
-.hero-subtitle {
-    font-size: 16px;
-}
+    .hero-title {
+        font-size: 36px;
+    }
 
-.hero-description {
-    font-size: 14px;
-}
+    .hero-subtitle {
+        font-size: 16px;
+    }
 
-.hero-buttons {
-    flex-direction: column;
-    gap: 10px;
-}
+    .hero-description {
+        font-size: 14px;
+    }
 
-.btn-primary,
-.btn-secondary {
-    width: 100%;
-}
+    .hero-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
 
-.about {
-    padding: 50px 15px;
-}
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
 
-.about h2 {
-    font-size: 32px;
-}
+    .about {
+        padding: 50px 15px;
+    }
 
-.about-intro {
-    padding: 25px;
-}
+    .about h2 {
+        font-size: 32px;
+    }
 
-.about-intro-content h3 {
-    font-size: 22px;
-}
+    .about-intro {
+        padding: 25px;
+    }
 
-.about-item {
-    padding: 25px;
-}
+    .about-intro-content h3 {
+        font-size: 22px;
+    }
+
+    .about-item {
+        padding: 25px;
+    }
 }
 
 /* FOOTER */
