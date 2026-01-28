@@ -1,0 +1,325 @@
+/* ============ THEME TOGGLE BUTTON ============ */
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    margin-right: 15px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(10deg);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
+}
+
+.theme-toggle:hover::before {
+    opacity: 0.2;
+}
+
+.theme-toggle i {
+    font-size: 20px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.theme-toggle:hover i {
+    transform: scale(1.1);
+}
+
+/* ============ LIGHT MODE STYLES ============ */
+body.light-mode {
+    background-color: #f8fafc;
+    background-image:
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+        radial-gradient(at 0% 100%, rgba(168, 85, 247, 0.08) 0px, transparent 50%);
+    color: #1e293b;
+}
+
+/* Light mode - Update CSS variables */
+body.light-mode {
+    --text-color: #1e293b;
+    --dark-color: #ffffff;
+    --light-color: #0a0a0a;
+    --border-color: #e2e8f0;
+}
+
+/* Navbar Light Mode */
+body.light-mode .navbar {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom-color: rgba(99, 102, 241, 0.2);
+}
+
+body.light-mode .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+body.light-mode .nav-logo {
+    background: linear-gradient(135deg, #1e293b 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .nav-link {
+    color: #1e293b;
+}
+
+body.light-mode .hamburger span {
+    background: #1e293b;
+}
+
+/* Hero Section Light Mode */
+body.light-mode .hero {
+    color: #1e293b;
+}
+
+body.light-mode .hero-badge {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(99, 102, 241, 0.3);
+    color: #1e293b;
+}
+
+body.light-mode .hero-title,
+body.light-mode .hero-subtitle,
+body.light-mode .hero-description {
+    color: #1e293b !important;
+}
+
+body.light-mode .stat {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+body.light-mode .stat h3,
+body.light-mode .stat p {
+    color: #1e293b !important;
+}
+
+/* Sections Light Mode */
+body.light-mode .about,
+body.light-mode .services,
+body.light-mode .stories-weather-section,
+body.light-mode .weather-widget-section,
+body.light-mode .faq-section,
+body.light-mode .info-board-section {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(99, 102, 241, 0.1);
+}
+
+body.light-mode .about h2,
+body.light-mode .services h2,
+body.light-mode h2,
+body.light-mode h3,
+body.light-mode h4 {
+    color: #1e293b !important;
+}
+
+body.light-mode p,
+body.light-mode .about-intro-content p,
+body.light-mode .about-expanded p {
+    color: #475569 !important;
+}
+
+/* Cards Light Mode */
+body.light-mode .about-item,
+body.light-mode .service-card,
+body.light-mode .faq-item,
+body.light-mode .info-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(99, 102, 241, 0.15);
+}
+
+body.light-mode .about-item:hover,
+body.light-mode .service-card:hover {
+    background: rgba(248, 250, 252, 1);
+    box-shadow: 0 15px 40px rgba(99, 102, 241, 0.15);
+}
+
+body.light-mode .about-intro,
+body.light-mode .about-expanded {
+    background: rgba(248, 250, 252, 0.95);
+    border-color: rgba(99, 102, 241, 0.15);
+}
+
+body.light-mode .location-item {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode .location-item:hover {
+    background: rgba(248, 250, 252, 1);
+}
+
+body.light-mode .location-item h4,
+body.light-mode .location-item p {
+    color: #475569 !important;
+}
+
+/* Story Viewer Light Mode */
+body.light-mode .story-viewer {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode .story-info {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+}
+
+body.light-mode .story-title,
+body.light-mode .story-caption {
+    color: #1e293b !important;
+}
+
+/* Weather Widget Light Mode */
+body.light-mode .weather-main-card {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+}
+
+body.light-mode .weather-detail-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+body.light-mode .weather-detail-card:hover {
+    background: rgba(248, 250, 252, 1);
+}
+
+body.light-mode .detail-label {
+    color: #64748b !important;
+}
+
+body.light-mode .detail-value {
+    color: #1e293b !important;
+}
+
+/* FAQ Light Mode */
+body.light-mode .faq-question {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+body.light-mode .faq-question:hover {
+    background: rgba(248, 250, 252, 1);
+}
+
+body.light-mode .faq-answer {
+    background: rgba(248, 250, 252, 0.9);
+}
+
+body.light-mode .faq-answer p {
+    color: #475569 !important;
+}
+
+/* Contact Form Light Mode */
+body.light-mode .contact {
+    background: rgba(255, 255, 255, 0.95);
+}
+
+body.light-mode input,
+body.light-mode textarea {
+    background: rgba(248, 250, 252, 0.9);
+    border-color: rgba(99, 102, 241, 0.2);
+    color: #1e293b;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+    color: #94a3b8;
+}
+
+body.light-mode .contact-subtitle {
+    color: #475569 !important;
+}
+
+/* Footer Light Mode */
+body.light-mode .footer {
+    background: rgba(255, 255, 255, 0.95);
+    border-top-color: rgba(99, 102, 241, 0.2);
+}
+
+body.light-mode .footer p {
+    color: #475569 !important;
+}
+
+/* Modals Light Mode */
+body.light-mode .info-modal-content,
+body.light-mode .weather-modal-content {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+body.light-mode .weather-modal-close,
+body.light-mode .info-modal-close {
+    color: #1e293b;
+}
+
+body.light-mode .weather-detail-box {
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.08) 100%);
+}
+
+/* Floating Weather Widget Light Mode */
+body.light-mode .floating-weather {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+body.light-mode .floating-temp,
+body.light-mode .floating-location,
+body.light-mode .floating-weather-label {
+    color: #1e293b !important;
+}
+
+/* Contact Icons Light Mode */
+body.light-mode .contact-icon-btn .icon-wrapper {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+body.light-mode .icon-label {
+    color: #475569 !important;
+}
+
+/* Cursor Blob Light Mode */
+body.light-mode #cursor-blob {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+}
+
+/* Scroll Progress Light Mode */
+body.light-mode #scroll-progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .theme-toggle {
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .theme-toggle i {
+        font-size: 18px;
+    }
+}
