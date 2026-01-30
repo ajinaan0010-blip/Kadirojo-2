@@ -50,6 +50,32 @@ function sendFormToWhatsApp(event) {
     showToast('Membuka WhatsApp... 🚀');
 }
 
+function sendFormToEmail(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const message = document.getElementById('message').value;
+
+    if (!name || !message || !email) {
+        showToast('Mohon isi nama, email, dan pesan! ⚠️');
+        return;
+    }
+
+    const subject = `Pesan Website Kadirojo 2 dari ${name}`;
+    const body = `Halo Admin Kadirojo 2,\n\nSaya ingin mengirim pesan melalui website:\n\n` +
+        `Nama: ${name}\n` +
+        `Email: ${email}\n` +
+        `No. Telp: ${phone || '-'}\n\n` +
+        `Pesan:\n${message}`;
+
+    const mailtoLink = `mailto:Kadirojo2rt06@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailtoLink;
+    showToast('Membuka aplikasi email... ✉️');
+}
+
 function initContactForm() {
     const form = document.querySelector('.contact-form');
     if (form) {
