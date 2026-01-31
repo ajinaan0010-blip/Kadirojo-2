@@ -1099,11 +1099,13 @@ body::after {
 
 .info-card {
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 20px;
     overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    background: rgba(30, 30, 30, 0.8);
-    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .info-card-image {
@@ -1117,8 +1119,11 @@ body::after {
 .info-card-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    object-fit: contain !important;
+    /* Changed to contain to prevent cropping */
+    background: #000;
+    /* Dark background to frame the logo neatly */
+    transition: transform 0.5s ease;
 }
 
 .info-card-overlay {
@@ -1127,12 +1132,12 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 119, 190, 0.7);
+    background: linear-gradient(to top, rgba(99, 102, 241, 0.8), transparent);
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .info-card-overlay i {
@@ -1159,9 +1164,9 @@ body::after {
 }
 
 .info-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba(0, 119, 190, 0.2);
-    border-color: var(--secondary-color);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3);
+    border-color: rgba(99, 102, 241, 0.5);
 }
 
 .info-card:hover .info-card-image img {
@@ -1180,12 +1185,13 @@ body::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.9);
     z-index: 2000;
     align-items: center;
     justify-content: center;
-    backdrop-filter: blur(3px);
-    animation: fadeInModal 0.3s ease;
+    backdrop-filter: blur(15px);
+    padding: 20px;
+    animation: fadeInModal 0.4s ease;
 }
 
 .info-modal.active {
@@ -1204,13 +1210,18 @@ body::after {
 
 .info-modal-content {
     position: relative;
-    max-width: 90%;
-    max-height: 90vh;
-    background: rgba(30, 30, 30, 0.8);
-    border-radius: 12px;
-    overflow: auto;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    animation: slideInModal 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    max-width: 1100px;
+    width: 100%;
+    height: 85vh;
+    max-height: 800px;
+    background: rgba(15, 15, 15, 0.95);
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 30px 100px rgba(0, 0, 0, 0.8);
+    animation: slideInModal 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
 }
 
 @keyframes slideInModal {
@@ -1252,8 +1263,141 @@ body::after {
 
 #info-modal-image {
     width: 100%;
-    height: auto;
+    /* Default for mobile, will be overridden in media query */
+    max-height: 40vh;
+    object-fit: contain;
+    /* Changed to contain to show full image */
     display: block;
+    margin: 0 auto;
+}
+
+.info-modal-details {
+    padding: 20px 30px;
+}
+
+/* Modal Body Split Layout */
+.info-modal-body {
+    display: flex;
+    flex-direction: column;
+    /* Mobile default */
+    height: 100%;
+    overflow: hidden;
+}
+
+@media (min-width: 768px) {
+    .info-modal-body {
+        flex-direction: row;
+        height: 100%;
+    }
+
+    .info-modal-image-wrapper {
+        flex: 1;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        height: 100%;
+        padding: 20px;
+    }
+
+    #info-modal-image {
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .info-modal-details {
+        flex: 1;
+        padding: 40px;
+        overflow-y: auto;
+        /* Scroll only the text part */
+        height: 100%;
+    }
+}
+
+/* Mobile Layout adjustments */
+@media (max-width: 767px) {
+    .info-modal-body {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+        /* Allow body to scroll on mobile */
+        max-height: 85vh;
+    }
+
+    .info-modal-image-wrapper {
+        width: 100%;
+        background: #000;
+        padding: 0;
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #info-modal-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: contain;
+    }
+
+    .info-modal-details {
+        padding: 25px;
+        overflow-y: visible;
+        height: auto;
+    }
+}
+
+.info-modal-details h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    /* Removed sticky positioning to allow natural scrolling */
+    position: relative;
+}
+
+.info-modal-details p {
+    line-height: 1.8;
+    color: #e5e5e5;
+    font-size: 16px;
+    text-align: justify;
+    padding-right: 5px;
+    margin-bottom: 20px;
+}
+
+.modal-para {
+    transition: transform 0.3s ease, color 0.3s ease;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.modal-para:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Custom Scrollbar for modal details */
+.info-modal-details::-webkit-scrollbar,
+.info-modal-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+.info-modal-details::-webkit-scrollbar-track,
+.info-modal-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.info-modal-details::-webkit-scrollbar-thumb,
+.info-modal-body::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
 }
 
 /* Fixed broken syntax - removed naked properties */
@@ -2848,5 +2992,87 @@ body::after {
 
     .footer-content {
         gap: 30px;
+    }
+}
+
+/* ============ MAP SECTION ============ */
+.map-section {
+    padding: 100px 0;
+    position: relative;
+    background: rgba(10, 10, 10, 0.3);
+}
+
+.map-section .section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.map-section .section-header h2 {
+    font-size: 36px;
+    margin-bottom: 15px;
+    background: linear-gradient(135deg, #fff 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.map-wrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(30, 30, 30, 0.5);
+    padding: 10px;
+}
+
+.map-container {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.map-legend {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    background: rgba(15, 15, 15, 0.9);
+    padding: 15px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    backdrop-filter: blur(5px);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #e5e5e5;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-marker i {
+    font-size: 18px;
+}
+
+@media (max-width: 768px) {
+    .map-container {
+        height: 400px;
+    }
+
+    .map-legend {
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 15px;
     }
 }

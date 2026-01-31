@@ -1,4 +1,3 @@
-<!-- Last Update: Jan 2026 - Fixed WhatsApp Connectivity -->
 <!DOCTYPE html>
 <html lang="id">
 
@@ -57,10 +56,11 @@
                 <span>KADIROJO 2</span>
             </div>
             <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Beranda</a></li>
-                <li><a href="#about" class="nav-link">Tentang</a></li>
-                <li><a href="#services" class="nav-link">Kegiatan</a></li>
-                <li><a href="#contact" class="nav-link">Kontak</a></li>
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li><a href="#kegiatan" class="nav-link">Kegiatan</a></li>
+                <li><a href="#informasi" class="nav-link">Informasi</a></li>
+                <li><a href="#kontak" class="nav-link">Kontak</a></li>
             </ul>
             <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark/Light Mode">
                 <i class="fas fa-moon"></i>
@@ -86,12 +86,8 @@
             <p class="hero-description">Membangun Desa Digital Berkelanjutan dengan Semangat Gotong Royong dan
                 Kebersamaan, Rukun, Kompak, Kerja sama yang baik</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary"
-                    onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">Tentang
-                    Kami</button>
-                <button class="btn btn-secondary"
-                    onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">Hubungi
-                    Kami</button>
+                <a href="#tentang" class="btn btn-primary">Tentang Kami</a>
+                <a href="#kontak" class="btn btn-secondary">Hubungi Kami</a>
             </div>
         </div>
         <div class="hero-stats">
@@ -108,8 +104,203 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Weather Widget Section -->
+    <section class="weather-widget-section">
+        <div class="container">
+            <h2>🌤️ Cuaca Hari Ini</h2>
+            <div class="weather-widget-grid">
+                <!-- Main Weather Card -->
+                <div class="weather-main-card">
+                    <div class="weather-location-header">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kadirojo II, Purwomartani</span>
+                    </div>
+                    <div class="weather-current">
+                        <i id="weather-icon-main" class="fas fa-cloud weather-icon-large"></i>
+                        <div class="weather-temp-main">
+                            <span id="weather-temp-display" class="temp-value">--</span>
+                            <span class="temp-unit">°C</span>
+                        </div>
+                        <div id="weather-status" class="weather-condition">Loading...</div>
+                    </div>
+                </div>
+
+                <!-- Weather Details Grid -->
+                <div class="weather-details-cards">
+                    <div class="weather-detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-droplet"></i>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Kelembaban</span>
+                            <span id="humidity-display" class="detail-value">--%</span>
+                        </div>
+                    </div>
+                    <div class="weather-detail-card">
+                        <div class="detail-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                        <div class="detail-info">
+                            <span class="detail-label">Kecepatan Angin</span>
+                            <span id="wind-display" class="detail-value">-- km/h</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="weather-more-btn" onclick="openWeatherModal()">
+                <span>Lihat Detail Lengkap</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Denah Wilayah Section -->
+    <section id="denah-section" class="denah-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>🗺️ Denah Wilayah RT 06</h2>
+                <p>Jelajahi wilayah RT 06 RW 02 Kadirojo II secara interaktif</p>
+            </div>
+            <div class="denah-card-modern" onclick="openDenahModal()">
+                <div class="denah-image-wrapper">
+                    <img src="images/denah rt 06.png" alt="Denah RT 06" class="denah-image">
+
+                    <!-- Interactive Markers -->
+                    <div class="denah-marker marker-rt" style="top: 45%; left: 35%;" title="Rumah Ketua RT">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="denah-marker marker-ronda" style="top: 25%; left: 65%;" title="Pos Ronda">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="denah-marker marker-entry" style="top: 80%; left: 50%;" title="Pintu Masuk Utama">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </div>
+
+                    <div class="denah-overlay-modern">
+                        <div class="overlay-content">
+                            <i class="fas fa-expand-arrows-alt"></i>
+                            <p>Klik untuk Interaksi Penuh</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="denah-legend">
+                    <div class="legend-item"><span class="dot rt"></span> Rumah Ketua RT</div>
+                    <div class="legend-item"><span class="dot ronda"></span> Pos Keamanan</div>
+                    <div class="legend-item"><span class="dot entry"></span> Akses Utama</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Denah Modal -->
+    <div id="denah-modal" class="denah-modal" onclick="closeDenahModal(event)">
+        <div class="denah-modal-content modern-modal" onclick="event.stopPropagation()">
+            <span class="denah-modal-close" onclick="closeDenahModal()">&times;</span>
+            <div class="modal-flex">
+                <div class="modal-image-side zoomable">
+                    <img src="images/denah rt 06.png" alt="Denah RT 06" id="denah-modal-img">
+                    <div class="zoom-controls">
+                        <button onclick="zoomDenah(1.2)"><i class="fas fa-plus"></i></button>
+                        <button onclick="zoomDenah(0.8)"><i class="fas fa-minus"></i></button>
+                        <button onclick="resetZoomDenah()"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+                <div class="modal-info-side">
+                    <h2>Batas-Batas Wilayah</h2>
+                    <ul class="bounds-list">
+                        <li><strong>Utara:</strong> Dusun Sidokerto</li>
+                        <li><strong>Selatan:</strong> RT 05 Kadirojo II</li>
+                        <li><strong>Barat:</strong> RT 05 Kadirojo II</li>
+                        <li><strong>Timur:</strong> Dusun Turusan</li>
+                    </ul>
+                    <p class="helper-text">Peta dapat di-zoom menggunakan kontrol di sebelah kiri atau scroll mouse.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Modal -->
+    <div id="emergency-modal" class="info-modal" onclick="closeEmergencyModal(event)">
+        <div class="info-modal-content modern-modal" onclick="event.stopPropagation()">
+            <span class="denah-modal-close" onclick="closeEmergencyModal()">&times;</span>
+            <div class="modal-flex">
+                <div class="modal-image-side">
+                    <img src="images/no-darurat-rt-2025.png" alt="Nomor Darurat">
+                </div>
+                <div class="modal-info-side">
+                    <h2>🚨 Nomor Darurat RT 06</h2>
+                    <p class="modal-subtitle">Klik nama untuk menelepon via smartphone</p>
+                    <div class="emergency-list">
+                        <div class="emergency-item">
+                            <span class="name">BP LADIMAN</span>
+                            <a href="tel:087754448989" class="phone-link"><i class="fas fa-phone-alt"></i> 0877 5444
+                                8989</a>
+                        </div>
+                        <div class="emergency-item">
+                            <span class="name">BP SUPARJA</span>
+                            <a href="tel:082137671678" class="phone-link"><i class="fas fa-phone-alt"></i> 0821 3767
+                                1678</a>
+                        </div>
+                        <div class="emergency-item">
+                            <span class="name">BP NOVE INDRA AGUNG</span>
+                            <a href="tel:089632302011" class="phone-link"><i class="fas fa-phone-alt"></i> 0896 3230
+                                2011</a>
+                        </div>
+                        <div class="emergency-item">
+                            <span class="name">SDR EKO SUDI SANTOSO</span>
+                            <a href="tel:08991240549" class="phone-link"><i class="fas fa-phone-alt"></i> 0899 1240
+                                549</a>
+                        </div>
+                        <div class="emergency-item">
+                            <span class="name">BP MUJI HERIYANTO</span>
+                            <a href="tel:081806006414" class="phone-link"><i class="fas fa-phone-alt"></i> 0818 0600
+                                6414</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weather Modal -->
+    <div id="weather-modal" class="weather-modal" onclick="closeWeatherModal(event)">
+        <div class="weather-modal-content" onclick="event.stopPropagation()">
+            <span class="weather-modal-close" onclick="closeWeatherModal()">&times;</span>
+            <div class="weather-modal-header">
+                <h2>🌤️ Informasi Cuaca Desa</h2>
+            </div>
+            <div class="weather-modal-body">
+                <div class="weather-main-display">
+                    <i id="weather-icon-modal" class="fas fa-cloud"></i>
+                    <div class="weather-temp-large" id="weather-temp-modal">--°C</div>
+                </div>
+                <div class="weather-description" id="weather-description-modal">Loading...</div>
+                <div class="weather-details-grid">
+                    <div class="weather-detail-box">
+                        <i class="fas fa-droplets"></i>
+                        <div>
+                            <p class="detail-label">Kelembaban</p>
+                            <p class="detail-value" id="humidity-modal">--%</p>
+                        </div>
+                    </div>
+                    <div class="weather-detail-box">
+                        <i class="fas fa-wind"></i>
+                        <div>
+                            <p class="detail-label">Kecepatan Angin</p>
+                            <p class="detail-value" id="wind-modal">-- km/h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="weather-location">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Kadirojo 2, Purwomartani, Sleman, Yogyakarta.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About/Tentang Section -->
+    <section id="tentang" class="about">
         <div class="container">
             <h2>Tentang RT 06 RW 02</h2>
             <div class="about-intro" onclick="toggleAboutExpanded()">
@@ -170,7 +361,7 @@
     </section>
 
     <!-- Services/Kegiatan Section -->
-    <section id="services" class="services">
+    <section id="kegiatan" class="services">
         <div class="container">
             <h2>Kegiatan & Program Utama</h2>
             <div class="services-grid">
@@ -207,8 +398,6 @@
         </div>
     </section>
 
-
-    <!-- Stories Section -->
     <!-- Stories & Weather Section -->
     <section class="stories-weather-section">
         <div class="container">
@@ -241,99 +430,53 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Weather Widget Sidebar HIDDEN -->
-
             </div>
         </div>
     </section>
 
-    <!-- Weather Widget Section -->
-    <section class="weather-widget-section">
+    <!-- Information Board Section -->
+    <section id="informasi" class="info-board-section">
         <div class="container">
-            <h2>🌤️ Cuaca Hari Ini</h2>
-            <div class="weather-widget-grid">
-                <!-- Main Weather Card -->
-                <div class="weather-main-card">
-                    <div class="weather-location-header">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>Kadirojo II, Purwomartani</span>
-                    </div>
-                    <div class="weather-current">
-                        <i id="weather-icon-main" class="fas fa-cloud weather-icon-large"></i>
-                        <div class="weather-temp-main">
-                            <span id="weather-temp-display" class="temp-value">--</span>
-                            <span class="temp-unit">°C</span>
+            <div class="section-header">
+                <h2>📋 Papan Informasi</h2>
+                <p>Klik gambar untuk informasi selengkapnya</p>
+            </div>
+            <div class="info-board-grid">
+                <!-- Emergency Numbers Card -->
+                <div class="info-card image-only-card" onclick="openEmergencyModal()">
+                    <div class="info-card-inner">
+                        <img src="images/no-darurat-rt-2025.png" alt="Nomor Darurat">
+                        <div class="info-card-overlay-simple">
+                            <h3>Nomor Darurat</h3>
+                            <span class="badge">Penting</span>
                         </div>
-                        <div id="weather-status" class="weather-condition">Loading...</div>
                     </div>
                 </div>
 
-                <!-- Weather Details Grid -->
-                <div class="weather-details-cards">
-                    <div class="weather-detail-card">
-                        <div class="detail-icon">
-                            <i class="fas fa-droplet"></i>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Kelembaban</span>
-                            <span id="humidity-display" class="detail-value">--%</span>
-                        </div>
-                    </div>
-                    <div class="weather-detail-card">
-                        <div class="detail-icon">
-                            <i class="fas fa-wind"></i>
-                        </div>
-                        <div class="detail-info">
-                            <span class="detail-label">Kecepatan Angin</span>
-                            <span id="wind-display" class="detail-value">-- km/h</span>
+                <!-- Filosofi Logo Card -->
+                <div class="info-card image-only-card" onclick="openInfoModal(this)" data-title="Filosofi Logo RT 06"
+                    data-desc="<strong>Filosofi Logo RT 06</strong><br><br>Logo RT 06 menampilkan bentuk atap rumah yang melambangkan RT 06 sebagai rumah besar bagi seluruh warga. Atap tersebut menjadi simbol perlindungan, kebersamaan, dan rasa aman, di mana setiap warga RT 06 hidup berdampingan dalam suasana kekeluargaan.<br><br>Tulisan <strong>Guyub</strong> mencerminkan semangat kebersamaan dan gotong royong warga RT 06. Setiap kegiatan sosial, kerja bakti, maupun perayaan dilakukan dengan rasa saling peduli dan kebersamaan yang kuat.<br><br>Makna <strong>Rembug</strong> menggambarkan budaya musyawarah yang dijunjung tinggi di RT 06. Setiap keputusan diambil melalui diskusi bersama, mengedepankan keterbukaan, kebijaksanaan, serta menghargai pendapat seluruh warga.<br><br>Sementara itu, kata <strong>Rukun</strong> menjadi landasan utama kehidupan bertetangga di RT 06, yang mencerminkan keharmonisan, toleransi, dan saling menghormati antarwarga tanpa memandang perbedaan.<br><br>Secara keseluruhan, logo RT 06 merepresentasikan lingkungan yang guyub dalam kebersamaan, kuat dalam musyawarah, dan kokoh dalam kerukunan, sebagai wujud komitmen bersama untuk menciptakan RT 06 yang aman, nyaman, dan harmonis">
+                    <div class="info-card-inner">
+                        <img src="images/logo filsop.jpeg" alt="Filosofi Logo RT 06">
+                        <div class="info-card-overlay-simple">
+                            <h3>Filosofi Logo</h3>
                         </div>
                     </div>
                 </div>
-            </div>
-            <button class="weather-more-btn" onclick="openWeatherModal()">
-                <span>Lihat Detail Lengkap</span>
-                <i class="fas fa-arrow-right"></i>
-            </button>
-        </div>
-    </section>
 
-    <!-- Weather Modal -->
-    <div id="weather-modal" class="weather-modal" onclick="closeWeatherModal(event)">
-        <div class="weather-modal-content" onclick="event.stopPropagation()">
-            <span class="weather-modal-close" onclick="closeWeatherModal()">&times;</span>
-            <div class="weather-modal-header">
-                <h2>🌤️ Informasi Cuaca Desa</h2>
-            </div>
-            <div class="weather-modal-body">
-                <div class="weather-main-display">
-                    <i id="weather-icon-modal" class="fas fa-cloud"></i>
-                    <div class="weather-temp-large" id="weather-temp-modal">--°C</div>
-                </div>
-                <div class="weather-description" id="weather-description-modal">Loading...</div>
-                <div class="weather-details-grid">
-                    <div class="weather-detail-box">
-                        <i class="fas fa-droplets"></i>
-                        <div>
-                            <p class="detail-label">Kelembaban</p>
-                            <p class="detail-value" id="humidity-modal">--%</p>
+                <!-- Struktur Organisasi Card -->
+                <div class="info-card image-only-card" onclick="openInfoModal(this)" data-title="Struktur Organisasi"
+                    data-desc="Bagan struktur organisasi pengurus RT 06 RW 02 Periode 2025-2027. Kenali pengurus lingkungan Anda.">
+                    <div class="info-card-inner">
+                        <img src="images/struktur-rt-06.png" alt="Struktur Organisasi RT 06">
+                        <div class="info-card-overlay-simple">
+                            <h3>Struktur Organisasi</h3>
                         </div>
                     </div>
-                    <div class="weather-detail-box">
-                        <i class="fas fa-wind"></i>
-                        <div>
-                            <p class="detail-label">Kecepatan Angin</p>
-                            <p class="detail-value" id="wind-modal">-- km/h</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="weather-location">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <p>Kadirojo 2, Purwomartani, Sleman, Yogyakarta.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- FAQ Section -->
     <section class="faq-section">
@@ -384,41 +527,6 @@
         </div>
     </section>
 
-    <!-- Information Board Section -->
-    <section class="info-board-section">
-        <div class="container">
-            <h2>Papan Informasi</h2>
-            <div class="info-board-grid">
-                <div class="info-card" onclick="openInfoModal(this)" data-title="Nomor Darurat"
-                    data-desc="Daftar nomor telepon penting untuk situasi darurat di lingkungan RT 06 RW 02. Simpan nomor ini untuk keamanan bersama.">
-                    <div class="info-card-image">
-                        <img src="images/no-darurat-rt-2025.png" alt="Nomor Darurat RT 2025">
-                        <div class="info-card-overlay">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                    </div>
-                    <div class="info-card-content">
-                        <h3>Nomor Darurat</h3>
-                        <p>Hubungi segera dalam situasi darurat</p>
-                    </div>
-                </div>
-                <div class="info-card" onclick="openInfoModal(this)" data-title="Struktur Organisasi"
-                    data-desc="Bagan struktur organisasi pengurus RT 06 RW 02 Periode 2025-2027. Kenali pengurus lingkungan Anda.">
-                    <div class="info-card-image">
-                        <img src="images/struktur-rt-06.png" alt="Struktur Organisasi RT 06">
-                        <div class="info-card-overlay">
-                            <i class="fas fa-sitemap"></i>
-                        </div>
-                    </div>
-                    <div class="info-card-content">
-                        <h3>Struktur Organisasi</h3>
-                        <p>Hirarki pengelolaan RT 06</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Info Modal -->
     <div id="info-modal" class="info-modal" onclick="closeInfoModal(event)">
         <div class="info-modal-content" onclick="event.stopPropagation()">
@@ -437,7 +545,7 @@
     </div>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="kontak" class="contact">
         <div class="container">
             <div class="contact-header">
                 <h2>💬 Hubungi Kami</h2>
@@ -447,7 +555,7 @@
             <div class="contact-wrapper">
                 <!-- Quick Contact Icons -->
                 <div class="quick-contact">
-                    <a href="https://wa.me/6287847712990" target="_blank" class="contact-icon-btn"
+                    <a href="https://wa.me/628991250549" target="_blank" class="contact-icon-btn"
                         title="Hubungi WhatsApp">
                         <div class="icon-wrapper whatsapp">
                             <i class="fab fa-whatsapp"></i>
@@ -528,9 +636,10 @@
                     <h3>Menu</h3>
                     <ul>
                         <li><a href="#home">Beranda</a></li>
-                        <li><a href="#about">Tentang</a></li>
-                        <li><a href="#services">Kegiatan</a></li>
-                        <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#tentang">Tentang</a></li>
+                        <li><a href="#kegiatan">Kegiatan</a></li>
+                        <li><a href="#informasi">Informasi</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -539,7 +648,7 @@
                         <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/rt06kadirojo2" target="_blank" title="Instagram"><i
                                 class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/6287847712990" target="_blank" title="WhatsApp"><i
+                        <a href="https://wa.me/628991250549" target="_blank" title="WhatsApp"><i
                                 class="fab fa-whatsapp"></i></a>
                         <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>

@@ -44,7 +44,7 @@ function sendFormToWhatsApp(event) {
         `*No. Telp:* ${phone || '-'}%0A%0A` +
         `*Pesan:*%0A${message}`;
 
-    const phoneNumber = '6287847712990';
+    const phoneNumber = '628991240549';
     window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
 
     showToast('Membuka WhatsApp... 🚀');
@@ -109,6 +109,46 @@ function showToast(message) {
         toast.style.animation = 'slideOut 0.3s ease-out forwards';
         setTimeout(() => toast.remove(), 300);
     }, 2000);
+}
+
+// ============ RIPPLE EFFECT ============
+function createRipple(event) {
+    const button = event.currentTarget;
+    const ripple = document.createElement('span');
+
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.cssText = `
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        width: ${size}px;
+        height: ${size}px;
+        left: ${x}px;
+        top: ${y}px;
+        transform: scale(0);
+        animation: ripple 0.6s linear;
+        pointer-events: none;
+    `;
+
+    button.appendChild(ripple);
+
+    setTimeout(() => ripple.remove(), 600);
+}
+
+// Initialize ripple effect on all buttons
+function initRippleEffects() {
+    document.querySelectorAll('.btn, .btn-primary, .btn-secondary').forEach(button => {
+        if (!button.classList.contains('ripple-initialized')) {
+            button.classList.add('ripple-initialized');
+            button.style.position = 'relative';
+            button.style.overflow = 'hidden';
+            button.addEventListener('click', createRipple);
+        }
+    });
 }
 
 // ============ CURSOR BLOB EFFECT ============
@@ -267,7 +307,10 @@ function showStory(index) {
     currentStory = index;
     const story = stories[index];
 
-    document.getElementById('story-image').src = story.image;
+    const storyImage = document.getElementById('story-image');
+    if (!storyImage) return;
+
+    storyImage.src = story.image;
     document.getElementById('story-title').textContent = story.title;
     document.getElementById('story-caption').textContent = story.caption;
 
@@ -278,10 +321,12 @@ function showStory(index) {
 
     // Reset progress animation
     const progressBar = document.querySelector('.story-progress-fill');
-    progressBar.style.animation = 'none';
-    setTimeout(() => {
-        progressBar.style.animation = 'progress 5s linear forwards';
-    }, 10);
+    if (progressBar) {
+        progressBar.style.animation = 'none';
+        setTimeout(() => {
+            progressBar.style.animation = 'progress 5s linear forwards';
+        }, 10);
+    }
 }
 
 function nextStory() {
@@ -355,39 +400,59 @@ function updateWeather(temp, humidity, code, wind) {
     }
 
     // Update weather icons
+    const elTemp = document.getElementById('weather-temp');
+    if (elTemp) elTemp.textContent = Math.round(temp) + '°C';
+
+    const elHumidity = document.getElementById('weather-humidity');
+    if (elHumidity) elHumidity.textContent = humidity;
+
+    const elWind = document.getElementById('weather-wind');
+    if (elWind) elWind.textContent = Math.round(wind);
+
+    const elTempDisplay = document.getElementById('temp-display');
+    if (elTempDisplay) elTempDisplay.textContent = Math.round(temp) + '°C';
+
+    updateWeatherIcon(code);
+    const elDesc = document.getElementById('weather-desc');
+    if (elDesc) elDesc.textContent = getWeatherDescription(code);
+
+    // Update weather card display
+    const elWeatherTempDisplay = document.getElementById('weather-temp-display');
+    if (elWeatherTempDisplay) elWeatherTempDisplay.textContent = Math.round(temp) + '°C';
+
+    const elWeatherStatus = document.getElementById('weather-status');
+    if (elWeatherStatus) elWeatherStatus.textContent = getWeatherDescription(code);
+
     updateWeatherIconDisplay(code);
 
-    // Update modal displays
-    const tempModal = document.getElementById('weather-temp-modal');
-    if (tempModal) {
-        tempModal.textContent = Math.round(temp) + '°C';
-    }
-
-    const descModal = document.getElementById('weather-description-modal');
-    if (descModal) {
-        descModal.textContent = getWeatherDescription(code);
-    }
-
-    const humidityModal = document.getElementById('humidity-modal');
-    if (humidityModal) {
-        humidityModal.textContent = humidity + '%';
-    }
-
-    const windModal = document.getElementById('wind-modal');
-    if (windModal) {
-        windModal.textContent = Math.round(wind) + ' km/h';
-    }
-
     // Update floating weather widget
-    const floatingTemp = document.getElementById('floating-temp');
-    if (floatingTemp) {
-        floatingTemp.textContent = Math.round(temp) + '°C';
-    }
+    const elFloatingTemp = document.getElementById('floating-temp');
+    if (elFloatingTemp) elFloatingTemp.textContent = Math.round(temp) + '°C';
 
     const floatingIcon = document.getElementById('floating-weather-icon');
     if (floatingIcon) {
         floatingIcon.className = getWeatherIcon(code);
     }
+
+    // Additional elements for new layout
+    const elHumidityDisplay = document.getElementById('humidity-display');
+    if (elHumidityDisplay) elHumidityDisplay.textContent = humidity + '%';
+
+    const elWindDisplay = document.getElementById('wind-display');
+    if (elWindDisplay) elWindDisplay.textContent = Math.round(wind) + ' km/h';
+
+    // Modal elements
+    const elTempModal = document.getElementById('weather-temp-modal');
+    if (elTempModal) elTempModal.textContent = Math.round(temp) + '°C';
+
+    const elDescModal = document.getElementById('weather-description-modal');
+    if (elDescModal) elDescModal.textContent = getWeatherDescription(code);
+
+    const elHumidityModal = document.getElementById('humidity-modal');
+    if (elHumidityModal) elHumidityModal.textContent = humidity + '%';
+
+    const elWindModal = document.getElementById('wind-modal');
+    if (elWindModal) elWindModal.textContent = Math.round(wind) + ' km/h';
 }
 
 function getWeatherDescription(code) {
@@ -606,7 +671,7 @@ function openInfoModal(element) {
     }
 
     if (modalTitle) modalTitle.textContent = title || 'Informasi';
-    if (modalDesc) modalDesc.textContent = desc || '';
+    if (modalDesc) modalDesc.innerHTML = desc || '';
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
@@ -631,33 +696,61 @@ document.addEventListener('keydown', function (event) {
     }
 });
 
-// ============ SCROLL ANIMATIONS ============
-function initializeScrollAnimations() {
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.about h2, .services h2, .stories-section h2, .weather-section h2, .faq-section h2, .map-section h2, .contact h2').forEach(el => {
-        el.style.opacity = '0';
-        observer.observe(el);
-    });
-
-    document.querySelectorAll('.about-item, .service-card, .faq-item, .info-card').forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.animationDelay = (index * 0.1) + 's';
-        observer.observe(el);
-    });
+// ============ EMERGENCY MODAL MANAGEMENT ============
+function openEmergencyModal() {
+    const modal = document.getElementById('emergency-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
+
+function closeEmergencyModal(event) {
+    if (event && event.target && event.target.id !== 'emergency-modal') {
+        const isCloseBtn = event.target.classList.contains('denah-modal-close') ||
+            event.target.classList.contains('info-modal-close') ||
+            event.target.closest('.denah-modal-close') ||
+            event.target.closest('.info-modal-close');
+        if (!isCloseBtn) return;
+    }
+    const modal = document.getElementById('emergency-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
+// ============ DENAH ZOOM MANAGEMENT ============
+let denahZoomLevel = 1;
+function zoomDenah(scale) {
+    denahZoomLevel *= scale;
+    // Limit zoom
+    if (denahZoomLevel < 0.5) denahZoomLevel = 0.5;
+    if (denahZoomLevel > 3) denahZoomLevel = 3;
+
+    const img = document.getElementById('denah-modal-img');
+    if (img) {
+        img.style.transform = `scale(${denahZoomLevel})`;
+        img.style.transition = 'transform 0.3s ease';
+    }
+}
+
+function resetZoomDenah() {
+    denahZoomLevel = 1;
+    const img = document.getElementById('denah-modal-img');
+    if (img) {
+        img.style.transform = `scale(1)`;
+    }
+}
+
+// Update initialization to set up modal listeners
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        closeInfoModal();
+        closeEmergencyModal();
+        closeDenahModal();
+    }
+});
 
 // ============ NAVBAR MANAGEMENT ============
 document.addEventListener('DOMContentLoaded', function () {
@@ -684,11 +777,68 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
+            // Close mobile menu
             navMenu.classList.remove('active');
             hamburger.classList.remove('active');
+
+            // Handle smooth scrolling for anchor links
+            const href = link.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const targetId = href.substring(1);
+                const targetSection = document.getElementById(targetId);
+
+                if (targetSection) {
+                    const navbarHeight = navbar.offsetHeight;
+                    const targetPosition = targetSection.offsetTop - navbarHeight;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Update active link
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
         });
     });
+
+    // Update active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        const navbarHeight = navbar.offsetHeight;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - navbarHeight - 100;
+            const sectionHeight = section.offsetHeight;
+
+            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            if (href === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+
+        // If at top of page, highlight home
+        if (window.scrollY < 100) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            const homeLink = document.querySelector('.nav-link[href="#home"]');
+            if (homeLink) homeLink.classList.add('active');
+        }
+    });
+
 
     // Sticky Navbar on Scroll
     window.addEventListener('scroll', () => {
@@ -721,22 +871,29 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(initializeSmallMap, 500);
 
     // Initialize scroll animations
-    initializeScrollAnimations();
+    try {
+        initializeScrollAnimations();
+    } catch (e) {
+        console.error("Scroll animations failed to init:", e);
+    }
 
-    // Remove Preloader
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        setTimeout(() => {
+    // Remove Preloader - Use a more robust approach
+    const removePreloader = () => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
             preloader.classList.add('fade-out');
             setTimeout(() => {
                 preloader.style.display = 'none';
-                // Trigger typewriter after preloader is gone
                 initTypewriter();
             }, 600);
-        }, 1500);
-    } else {
-        initTypewriter();
-    }
+        } else {
+            initTypewriter();
+        }
+    };
+
+    // Remove after 1.5s or when window is fully loaded, whichever comes first
+    window.addEventListener('load', removePreloader);
+    setTimeout(removePreloader, 2000); // Fail-safe
 
     // Scroll progress listener
     window.addEventListener('scroll', updateScrollProgress);
@@ -749,6 +906,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize Theme
     initTheme();
+
+    // Initialize Ripple Effects
+    initRippleEffects();
+
+    // Re-initialize ripple effects after dynamic content loads
+    setTimeout(initRippleEffects, 2000);
 });
 
 // ============ THEME MANAGEMENT ============
@@ -801,5 +964,51 @@ function closeWeatherModal(event) {
 // Consolidated with updateWeatherIcon and getWeatherIcon
 function updateWeatherIconDisplay(code) {
     updateWeatherIcon(code);
+}
+
+// ============ SCROLL REVEAL INITIALIZATION ============
+function initializeScrollAnimations() {
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+    function reveal() {
+        reveals.forEach(el => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', reveal);
+    // Initial call
+    reveal();
+}
+
+// ============ DENAH MODAL FUNCTIONS ============
+function openDenahModal() {
+    const modal = document.getElementById('denah-modal');
+    if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeDenahModal(event) {
+    // If event is provided, only close if clicking the backdrop
+    if (event && event.target && event.target.id !== 'denah-modal') {
+        const isCloseBtn = event.target.classList.contains('denah-modal-close') ||
+            event.target.closest('.denah-modal-close');
+        if (!isCloseBtn) return;
+    }
+
+    const modal = document.getElementById('denah-modal');
+    if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+        resetZoomDenah(); // Reset zoom when closing
+    }
 }
 

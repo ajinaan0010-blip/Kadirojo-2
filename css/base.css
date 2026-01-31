@@ -6,13 +6,47 @@
 }
 
 :root {
+    /* Primary Colors */
     --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-light: #818cf8;
     --secondary-color: #a855f7;
-    --dark-color: #0a0a0a;
-    --light-color: #f5f5f5;
-    --text-color: #e5e5e5;
-    --border-color: #2a2a2a;
+    --secondary-hover: #9333ea;
+    --accent-pink: #ec4899;
+
+    /* Background Colors */
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #141414;
+    --bg-card: rgba(20, 20, 20, 0.85);
+    --bg-glass: rgba(30, 30, 30, 0.8);
+
+    /* Text Colors */
+    --text-primary: #f8f9fa;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --text-muted: #6b7280;
+
+    /* Border & Divider */
+    --border-color: rgba(99, 102, 241, 0.2);
+    --border-subtle: rgba(255, 255, 255, 0.1);
+    --divider: rgba(255, 255, 255, 0.05);
+
+    /* Effects */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 8px 32px rgba(31, 38, 135, 0.07);
+    --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.3);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+
+    /* Transitions */
+    --transition-fast: all 0.2s ease;
     --transition: all 0.3s ease;
+    --transition-slow: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* Blur */
+    --blur-sm: blur(8px);
+    --blur-md: blur(12px);
+    --blur-lg: blur(20px);
 }
 
 html {
@@ -73,26 +107,25 @@ body>* {
     }
 }
 
-/* Dark Theme Text Colors */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    color: #ffffff !important;
+    color: var(--text-primary);
 }
 
 p {
-    color: #d1d5db;
+    color: var(--text-secondary);
 }
 
 a {
-    color: #a78bfa;
+    color: var(--primary-color);
 }
 
 a:hover {
-    color: #c4b5fd;
+    color: var(--primary-light);
 }
 
 /* Specific Element Colors */
@@ -108,14 +141,14 @@ li {
 .contact-form label,
 .weather-status,
 .detail-label {
-    color: #d1d5db !important;
+    color: var(--text-secondary);
 }
 
 .about-item h3,
 .service-card h3,
 .faq-question,
 .form-header h3 {
-    color: #ffffff !important;
+    color: var(--text-primary);
 }
 
 /* Button text */

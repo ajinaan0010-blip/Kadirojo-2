@@ -65,9 +65,14 @@ body.light-mode {
 /* Light mode - Update CSS variables */
 body.light-mode {
     --text-color: #1e293b;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --text-tertiary: #64748b;
     --dark-color: #ffffff;
     --light-color: #0a0a0a;
     --border-color: #e2e8f0;
+    --bg-card: rgba(255, 255, 255, 0.95);
+    --bg-glass: rgba(248, 250, 252, 0.8);
 }
 
 /* Navbar Light Mode */
@@ -174,7 +179,7 @@ body.light-mode h4 {
 body.light-mode p,
 body.light-mode .about-intro-content p,
 body.light-mode .about-expanded p {
-    color: #475569 !important;
+    color: var(--text-secondary);
 }
 
 /* Cards Light Mode */
@@ -208,7 +213,7 @@ body.light-mode .location-item:hover {
 
 body.light-mode .location-item h4,
 body.light-mode .location-item p {
-    color: #475569 !important;
+    color: var(--text-secondary);
 }
 
 /* Story Viewer Light Mode */
@@ -240,7 +245,7 @@ body.light-mode .weather-detail-card:hover {
 }
 
 body.light-mode .detail-label {
-    color: #64748b !important;
+    color: var(--text-tertiary);
 }
 
 body.light-mode .detail-value {
@@ -274,7 +279,7 @@ body.light-mode .faq-answer {
 }
 
 body.light-mode .faq-answer p {
-    color: #475569 !important;
+    color: var(--text-secondary);
 }
 
 /* Contact Form Light Mode */
@@ -348,11 +353,11 @@ body.light-mode .info-modal-body {
 }
 
 body.light-mode #info-modal-title {
-    color: var(--primary-color) !important;
+    color: var(--primary-color);
 }
 
 body.light-mode #info-modal-desc {
-    color: #475569 !important;
+    color: var(--text-secondary);
 }
 
 body.light-mode .info-modal-image-wrapper {
