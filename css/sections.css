@@ -1920,3 +1920,26 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.6);
 }
+
+/* ============ SECTION STATS WRAPPER ============ */
+.section-stats-wrapper {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.section-stats-wrapper .stat {
+    max-width: 400px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Adjustments for the stats card when placed inside contact wrapper */
+.contact-wrapper .section-stats-wrapper {
+    grid-column: 1 / -1;
+    /* Take full width in the contact grid if applicable */
+    margin-top: 30px;
+}
