@@ -47,7 +47,7 @@ function sendFormToWhatsApp(event) {
     const phoneNumber = '628991240549';
     window.open(`https://wa.me/${phoneNumber}?text=${text}`, '_blank');
 
-    showToast('Membuka WhatsApp... 🚀');
+    openSuccessModal();
 }
 
 function sendFormToEmail(event) {
@@ -73,7 +73,7 @@ function sendFormToEmail(event) {
     const mailtoLink = `mailto:Kadirojo2rt06@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     window.location.href = mailtoLink;
-    showToast('Membuka aplikasi email... ✉️');
+    openSuccessModal();
 }
 
 function initContactForm() {
@@ -1015,4 +1015,25 @@ function closeDenahModal(event) {
         resetZoomDenah(); // Reset zoom when closing
     }
 }
+
+// ============ SUCCESS MODAL FUNCTIONS ============
+function openSuccessModal() {
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeSuccessModal(event) {
+    if (event && event.target.id !== 'success-modal' && !event.target.classList.contains('denah-modal-close') && !event.target.closest('.denah-modal-close')) {
+        return;
+    }
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+}
+
 

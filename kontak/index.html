@@ -181,6 +181,22 @@
         </div>
     </footer>
 
+    <!-- Success Modal -->
+    <div id="success-modal" class="info-modal" onclick="closeSuccessModal(event)">
+        <div class="info-modal-content modern-modal success-modal-content" onclick="event.stopPropagation()">
+            <span class="denah-modal-close" onclick="closeSuccessModal()">&times;</span>
+            <div class="modal-success-body">
+                <div class="success-icon-wrapper">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h2>Pesan Terkirim!</h2>
+                <p>Terima kasih telah menghubungi kami. Pesan Anda telah kami terima dan akan segera kami tindak
+                    lanjuti.</p>
+                <button class="btn btn-primary" onclick="closeSuccessModal()">Tutup</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../js/script.js"></script>
 </body>
 

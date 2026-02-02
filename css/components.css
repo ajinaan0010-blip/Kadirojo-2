@@ -282,3 +282,57 @@
     z-index: 10001;
     transition: width 0.1s ease;
 }
+
+/* ============ SUCCESS MODAL ============ */
+.success-modal-content {
+    max-width: 500px !important;
+}
+
+.modal-success-body {
+    padding: 60px 40px;
+    text-align: center;
+    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    border-radius: 30px;
+}
+
+.success-icon-wrapper {
+    width: 100px;
+    height: 100px;
+    background: rgba(37, 211, 102, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    color: #25D366;
+    font-size: 60px;
+    animation: scaleInSuccess 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes scaleInSuccess {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-success-body h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.modal-success-body p {
+    color: #9ca3af;
+    line-height: 1.7;
+    margin-bottom: 35px;
+}
+
+.modal-success-body .btn {
+    width: 100%;
+}
