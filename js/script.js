@@ -948,17 +948,21 @@ setInterval(fetchWeather, 600000);
 // ============ WEATHER MODAL FUNCTIONS ============
 function openWeatherModal() {
     const modal = document.getElementById('weather-modal');
-    modal.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeWeatherModal(event) {
-    if (event && event.target.id !== 'weather-modal') {
+    if (event && event.target.id !== 'weather-modal' && !event.target.classList.contains('weather-modal-close') && !event.target.closest('.weather-modal-close')) {
         return;
     }
     const modal = document.getElementById('weather-modal');
-    modal.classList.remove('show');
-    document.body.style.overflow = 'auto';
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
 }
 
 // Consolidated with updateWeatherIcon and getWeatherIcon
@@ -991,7 +995,7 @@ function initializeScrollAnimations() {
 function openDenahModal() {
     const modal = document.getElementById('denah-modal');
     if (modal) {
-        modal.classList.add('show');
+        modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
@@ -1006,7 +1010,7 @@ function closeDenahModal(event) {
 
     const modal = document.getElementById('denah-modal');
     if (modal) {
-        modal.classList.remove('show');
+        modal.classList.remove('active');
         document.body.style.overflow = 'auto';
         resetZoomDenah(); // Reset zoom when closing
     }

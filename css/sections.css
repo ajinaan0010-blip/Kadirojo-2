@@ -1307,7 +1307,7 @@
     padding: 20px;
 }
 
-.denah-modal.show {
+.denah-modal.active {
     display: flex;
 }
 
