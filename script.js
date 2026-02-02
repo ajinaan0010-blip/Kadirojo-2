@@ -54,7 +54,7 @@ function sendFormToWhatsApp(event) {
 
     const whatsappMessage = `Halo Admin RT 06 Kadirojo 2,%0A%0ASaya ingin mengirim pesan melalui website:%0A%0ANama: ${name}%0AEmail: ${email}%0ANo. HP: ${phone}%0A%0APesan: ${message}`;
 
-    window.open(`https://wa.me/628991250549?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/628991240549?text=${whatsappMessage}`, '_blank');
 }
 
 function showToast(message) {
