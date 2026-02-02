@@ -281,6 +281,10 @@
     .info-modal-content {
         max-width: 95%;
         max-height: 95vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        display: flex;
+        flex-direction: column;
     }
 
     .info-modal-close {
