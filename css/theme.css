@@ -126,10 +126,19 @@ body.light-mode .hero-badge {
     color: #1e293b;
 }
 
-body.light-mode .hero-title,
-body.light-mode .hero-subtitle,
+body.light-mode .hero-title {
+    background: linear-gradient(135deg, #1e293b 0%, #4338ca 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-mode .hero-subtitle {
+    color: #334155 !important;
+}
+
 body.light-mode .hero-description {
-    color: #1e293b !important;
+    color: #475569 !important;
 }
 
 body.light-mode .badge-text {
@@ -163,9 +172,21 @@ body.light-mode .services,
 body.light-mode .stories-weather-section,
 body.light-mode .weather-widget-section,
 body.light-mode .faq-section,
+body.light-mode .denah-section,
 body.light-mode .info-board-section {
     background: rgba(255, 255, 255, 0.95);
     border-color: rgba(99, 102, 241, 0.1);
+}
+
+body.light-mode .section-header h2 {
+    background: linear-gradient(135deg, #1e293b 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+body.light-mode .section-header p {
+    color: #475569;
 }
 
 body.light-mode .about h2,
@@ -201,9 +222,15 @@ body.light-mode .about-intro,
 body.light-mode .about-expanded,
 body.light-mode .emergency-item,
 body.light-mode .denah-card-modern,
-body.light-mode .denah-modal-content {
-    background: rgba(255, 255, 255, 0.95);
+body.light-mode .denah-modal-content,
+body.light-mode .denah-legend {
+    background: rgba(255, 255, 255, 1);
     border-color: rgba(99, 102, 241, 0.15);
+    color: #1e293b;
+}
+
+body.light-mode .legend-item {
+    color: #475569;
 }
 
 body.light-mode .emergency-item .name {
@@ -420,8 +447,21 @@ body.light-mode .floating-weather-label {
 
 /* Contact Icons Light Mode */
 body.light-mode .contact-icon-btn .icon-wrapper {
-    background: rgba(255, 255, 255, 0.9);
-    border-color: rgba(99, 102, 241, 0.2);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .icon-wrapper.whatsapp i {
+    color: #25D366;
+}
+
+body.light-mode .icon-wrapper.email i {
+    color: #ff5722;
+}
+
+body.light-mode .icon-wrapper.instagram i {
+    color: #E1306C;
 }
 
 body.light-mode .icon-label {
@@ -431,6 +471,11 @@ body.light-mode .icon-label {
 /* Cursor Blob Light Mode */
 body.light-mode #cursor-blob {
     background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
+}
+
+/* Hero Title Dark Mode Enhancement */
+body:not(.light-mode) .hero-title {
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
 /* Scroll Progress Light Mode */

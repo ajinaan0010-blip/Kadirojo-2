@@ -38,7 +38,7 @@ function sendFormToWhatsApp(event) {
         return;
     }
 
-    const text = `Halo RT 06 RW 02 Kadirojo 2,%0A%0A` +
+    const text = `Halo RT06 RW02 KADIROJO 2,%0A%0A` +
         `*Nama:* ${name}%0A` +
         `*Email:* ${email}%0A` +
         `*No. Telp:* ${phone || '-'}%0A%0A` +
@@ -166,7 +166,7 @@ function initCursorBlob() {
 
 // ============ TYPEWRITER EFFECT ============
 function initTypewriter() {
-    const text = "RT 06 RW 02 Kadirojo 2";
+    const text = "RT06 RW02 KADIROJO 2";
     const element = document.getElementById('typewriter');
     let i = 0;
 

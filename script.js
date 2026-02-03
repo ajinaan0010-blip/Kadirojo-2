@@ -52,7 +52,7 @@ function sendFormToWhatsApp(event) {
         return;
     }
 
-    const whatsappMessage = `Halo Admin RT 06 Kadirojo 2,%0A%0ASaya ingin mengirim pesan melalui website:%0A%0ANama: ${name}%0AEmail: ${email}%0ANo. HP: ${phone}%0A%0APesan: ${message}`;
+    const whatsappMessage = `Halo Admin RT06 RW02 KADIROJO 2,%0A%0ASaya ingin mengirim pesan melalui website:%0A%0ANama: ${name}%0AEmail: ${email}%0ANo. HP: ${phone}%0A%0APesan: ${message}`;
 
     window.open(`https://wa.me/628991240549?text=${whatsappMessage}`, '_blank');
 }
@@ -359,7 +359,7 @@ function initializeSmallMap() {
     });
 
     L.marker(center, { icon: mainIcon }).addTo(map)
-        .bindPopup('<div style="text-align: center;"><strong>RT 06 RW 02<br>Kadirojo II</strong></div>')
+        .bindPopup('<div style="text-align: center;"><strong>RT06 RW02<br>KADIROJO 2</strong></div>')
         .openPopup();
 
     // Territory Circle
