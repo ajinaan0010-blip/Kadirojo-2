@@ -548,6 +548,7 @@ function initializeSmallMap() {
 }
 
 function openMapFullscreen() {
+    const isLight = document.body.classList.contains('light-mode');
     const overlay = document.createElement('div');
     overlay.style.cssText = `
         position: fixed;
@@ -555,7 +556,7 @@ function openMapFullscreen() {
         left: 0;
         right: 0;
         bottom: 0;
-        background: white;
+        background: ${isLight ? 'white' : '#0a0a0a'};
         z-index: 1000;
         display: flex;
         flex-direction: column;
@@ -567,7 +568,8 @@ function openMapFullscreen() {
         top: 20px;
         right: 20px;
         z-index: 1001;
-        background: white;
+        background: ${isLight ? 'white' : '#1a1a1a'};
+        color: ${isLight ? '#1e293b' : '#ffffff'};
         border: none;
         width: 40px;
         height: 40px;
@@ -577,7 +579,7 @@ function openMapFullscreen() {
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     `;
     closeBtn.innerHTML = '✕';
     closeBtn.onclick = () => overlay.remove();

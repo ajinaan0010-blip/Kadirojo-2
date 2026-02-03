@@ -314,6 +314,11 @@
     margin-bottom: 15px;
 }
 
+.about-expa.btn-text {
+    color: #ffffff;
+    font-weight: 600;
+}
+
 .about-expand-text {
     font-weight: 600;
     color: var(--primary-color);
@@ -389,7 +394,7 @@
 .location-item:hover,
 .location-item.highlight {
     border-color: var(--primary-color);
-    background: #f0f7ff;
+    background: rgba(99, 102, 241, 0.05);
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 119, 190, 0.15);
 }
@@ -406,7 +411,7 @@
 }
 
 .location-item p {
-    color: #9ca3af;
+    color: var(--text-tertiary);
     font-size: 14px;
 }
 
@@ -485,13 +490,13 @@
 }
 
 .about-item h3 {
-    color: #ffffff !important;
+    color: var(--text-primary) !important;
     margin-bottom: 15px;
     font-size: 24px;
 }
 
 .about-item p {
-    color: #d1d5db !important;
+    color: var(--text-secondary) !important;
     line-height: 1.7;
 }
 
@@ -587,7 +592,7 @@
 }
 
 .service-card p {
-    color: #9ca3af;
+    color: var(--text-tertiary);
     line-height: 1.8;
 }
 
@@ -663,7 +668,7 @@
     overflow: hidden;
     padding: 0 20px;
     transition: var(--transition);
-    background: var(--light-color);
+    background: var(--bg-card);
 }
 
 .faq-item.active .faq-answer {
@@ -673,7 +678,7 @@
 
 .faq-answer p {
     margin: 0;
-    color: #9ca3af;
+    color: var(--text-tertiary);
     line-height: 1.8;
 }
 
@@ -773,14 +778,14 @@
 }
 
 .modern-modal {
-    background: #111;
+    background: var(--bg-secondary, #111);
     border-radius: 30px;
     width: 100%;
     max-width: 1000px;
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 
@@ -809,7 +814,7 @@
     flex: 1;
     min-width: 300px;
     padding: 50px;
-    background: linear-gradient(135deg, #111 0%, #1a1a1a 100%);
+    background: var(--bg-secondary, #1a1a1a);
 }
 
 .modal-info-side h2 {
@@ -828,10 +833,10 @@
 }
 
 .emergency-item {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-secondary);
     padding: 20px;
     border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -845,7 +850,7 @@
 
 .emergency-item .name {
     font-weight: 700;
-    color: #eee;
+    color: var(--text-primary);
 }
 
 .phone-link {
@@ -899,7 +904,7 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1068,7 +1073,7 @@
 
 .helper-text {
     font-size: 14px;
-    color: #666;
+    color: var(--text-muted);
     font-style: italic;
     margin-top: 20px;
 }
@@ -1157,7 +1162,7 @@
 .info-modal-details p {
     font-size: 16px;
     line-height: 1.7;
-    color: #d1d5db;
+    color: var(--text-secondary);
     margin-bottom: 30px;
 }
 
@@ -1166,7 +1171,7 @@
     top: 20px;
     right: 20px;
     font-size: 24px;
-    color: white;
+    color: var(--text-primary);
     cursor: pointer;
     background: rgba(0, 0, 0, 0.5);
     width: 40px;
@@ -1543,7 +1548,7 @@
 .icon-label {
     font-size: 13px;
     font-weight: 600;
-    color: #e5e5e5;
+    color: var(--text-secondary);
     text-align: center;
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
@@ -1720,7 +1725,7 @@
 .form-group label {
     font-size: 14px;
     font-weight: 700;
-    color: #ffffff;
+    color: var(--text-primary);
     letter-spacing: 0.5px;
     font-family: 'Poppins', 'Inter', sans-serif;
     text-transform: uppercase;
@@ -1869,7 +1874,7 @@
 }
 
 .footer-section p {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     line-height: 1.8;
 }
 
@@ -1882,7 +1887,7 @@
 }
 
 .footer-section a {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-secondary);
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
@@ -1920,7 +1925,7 @@
     text-align: center;
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--text-tertiary);
 }
 
 /* ============ SECTION STATS WRAPPER ============ */

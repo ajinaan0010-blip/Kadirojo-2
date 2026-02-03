@@ -58,11 +58,11 @@ h3,
 h4,
 h5,
 h6 {
-    color: #ffffff !important;
+    color: var(--text-primary);
 }
 
 p {
-    color: #d1d5db;
+    color: var(--text-secondary);
 }
 
 a {
@@ -86,14 +86,14 @@ li {
 .contact-form label,
 .weather-status,
 .detail-label {
-    color: #d1d5db !important;
+    color: var(--text-secondary);
 }
 
 .about-item h3,
 .service-card h3,
 .faq-question,
 .form-header h3 {
-    color: #ffffff !important;
+    color: var(--text-primary);
 }
 
 /* Button text */
@@ -714,9 +714,14 @@ body::after {
     margin-bottom: 15px;
 }
 
+.btn-text {
+    color: #ffffff;
+    font-weight: 600;
+}
+
 .about-expand-text {
     font-weight: 600;
-    color: var(--primary-color);
+    color: #ffffff;
     margin-top: 20px;
     animation: bounce 1s infinite;
 }
@@ -818,7 +823,7 @@ body::after {
 }
 
 .about-item {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--bg-secondary);
     padding: 40px;
     border-radius: 20px;
     text-align: center;
@@ -885,13 +890,13 @@ body::after {
 }
 
 .about-item h3 {
-    color: #ffffff !important;
+    color: var(--text-primary);
     margin-bottom: 15px;
     font-size: 24px;
 }
 
 .about-item p {
-    color: #d1d5db !important;
+    color: var(--text-secondary);
     line-height: 1.7;
 }
 
@@ -1573,7 +1578,7 @@ body::after {
 .icon-label {
     font-size: 13px;
     font-weight: 600;
-    color: #e5e5e5;
+    color: #ffffff;
     text-align: center;
     font-family: 'Poppins', sans-serif;
     transition: all 0.3s ease;
@@ -1656,20 +1661,21 @@ body::after {
 
 .tooltip {
     position: absolute;
-    bottom: -40px;
+    bottom: 120%;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.9);
-    color: white;
+    color: #ffffff;
     padding: 8px 16px;
     border-radius: 8px;
     font-size: 13px;
-    font-weight: 600;
     white-space: nowrap;
     opacity: 0;
-    transition: all 0.3s ease;
     pointer-events: none;
-    z-index: 10;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .tooltip::before {
@@ -1847,10 +1853,6 @@ body::after {
 
 .btn-whatsapp-direct:active {
     transform: translateY(-1px);
-}
-
-.btn-text {
-    display: inline;
 }
 
 .btn-icon {
@@ -2507,7 +2509,20 @@ body::after {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Weather More Button */
+.hero-description {
+    font-size: clamp(16px, 2vw, 18px);
+    color: var(--text-secondary);
+    margin: 0 auto 30px;
+    max-width: 700px;
+}
+
+.weather-details-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
 .weather-more-btn {
     display: flex;
     align-items: center;
@@ -2638,21 +2653,6 @@ body::after {
     color: var(--primary-color);
 }
 
-.weather-temp-large {
-    font-size: 64px;
-    font-weight: 800;
-    color: var(--primary-color);
-    line-height: 1;
-    font-family: 'Poppins', sans-serif;
-}
-
-.weather-description {
-    font-size: 18px;
-    color: #9ca3af;
-    margin-bottom: 35px;
-    font-weight: 500;
-}
-
 .weather-details-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -2677,7 +2677,7 @@ body::after {
 
 .detail-label {
     font-size: 12px;
-    color: #d1d5db;
+    color: var(--text-tertiary);
     margin: 0 0 5px 0;
     text-transform: uppercase;
     letter-spacing: 0.5px;

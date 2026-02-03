@@ -71,8 +71,8 @@ body.light-mode {
     --dark-color: #ffffff;
     --light-color: #0a0a0a;
     --border-color: #e2e8f0;
-    --bg-card: rgba(255, 255, 255, 0.95);
-    --bg-glass: rgba(248, 250, 252, 0.8);
+    --bg-card: rgba(255, 255, 255, 1);
+    --bg-glass: rgba(255, 255, 255, 0.95);
 }
 
 /* Navbar Light Mode */
@@ -198,9 +198,28 @@ body.light-mode .service-card:hover {
 }
 
 body.light-mode .about-intro,
-body.light-mode .about-expanded {
-    background: rgba(248, 250, 252, 0.95);
+body.light-mode .about-expanded,
+body.light-mode .emergency-item,
+body.light-mode .denah-card-modern,
+body.light-mode .denah-modal-content {
+    background: rgba(255, 255, 255, 0.95);
     border-color: rgba(99, 102, 241, 0.15);
+}
+
+body.light-mode .emergency-item .name {
+    color: #1e293b;
+}
+
+body.light-mode .emergency-item:hover {
+    background: rgba(99, 102, 241, 0.05);
+}
+
+body.light-mode .denah-legend {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+body.light-mode .denah-marker {
+    background: #ffffff;
 }
 
 body.light-mode .location-item {
@@ -232,7 +251,8 @@ body.light-mode .story-caption {
 
 /* Weather Widget Light Mode */
 body.light-mode .weather-main-card {
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    border-color: rgba(99, 102, 241, 0.2);
 }
 
 body.light-mode .weather-detail-card {
@@ -262,7 +282,7 @@ body.light-mode .weather-condition {
 
 body.light-mode .weather-icon-large {
     color: var(--primary-color);
-    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.2));
+    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.1));
 }
 
 /* FAQ Light Mode */
@@ -356,8 +376,20 @@ body.light-mode #info-modal-title {
     color: var(--primary-color);
 }
 
-body.light-mode #info-modal-desc {
+body.light-mode #info-modal-desc,
+body.light-mode .modal-info-side p,
+body.light-mode .bounds-list li {
     color: var(--text-secondary);
+}
+
+body.light-mode .modal-info-side {
+    background: #ffffff;
+}
+
+body.light-mode .modal-info-side h2 {
+    background: linear-gradient(135deg, #1e293b 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 body.light-mode .info-modal-image-wrapper {

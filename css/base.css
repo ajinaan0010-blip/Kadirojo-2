@@ -22,10 +22,11 @@
     --bg-glass: rgba(30, 30, 30, 0.8);
 
     /* Text Colors */
-    --text-primary: #f8f9fa;
-    --text-secondary: #d1d5db;
-    --text-tertiary: #9ca3af;
-    --text-muted: #6b7280;
+    --text-primary: #ffffff;
+    --text-secondary: #f1f5f9;
+    --text-tertiary: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-color: #ffffff;
 
     /* Border & Divider */
     --border-color: rgba(99, 102, 241, 0.2);
@@ -160,9 +161,9 @@ button,
 /* Input and textarea */
 input,
 textarea {
-    color: #e5e5e5;
-    background: rgba(30, 30, 30, 0.8);
-    border-color: rgba(99, 102, 241, 0.3);
+    color: var(--text-primary);
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
 }
 
 input::placeholder,
