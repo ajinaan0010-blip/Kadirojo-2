@@ -57,23 +57,54 @@ function sendFormToEmail(event) {
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
     const message = document.getElementById('message').value;
+    const submitBtn = event.target.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : 'Kirim Email';
 
     if (!name || !message || !email) {
         showToast('Mohon isi nama, email, dan pesan! ⚠️');
         return;
     }
 
-    const subject = `Pesan Website Kadirojo 2 dari ${name}`;
-    const body = `Halo Admin Kadirojo 2,\n\nSaya ingin mengirim pesan melalui website:\n\n` +
-        `Nama: ${name}\n` +
-        `Email: ${email}\n` +
-        `No. Telp: ${phone || '-'}\n\n` +
-        `Pesan:\n${message}`;
+    // Show loading state
+    if (submitBtn) {
+        submitBtn.innerHTML = '<span class="btn-text">Mengirim...</span><span class="btn-icon">⏳</span>';
+        submitBtn.disabled = true;
+    }
 
-    const mailtoLink = `mailto:Kadirojo2rt06@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Prepare data for FormSubmit
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('email', email);
+    formData.append('phone', phone || '-');
+    formData.append('message', message);
+    formData.append('_subject', `Pesan Website Kadirojo 2 dari ${name}`);
+    formData.append('_template', 'table');
+    formData.append('_captcha', 'false'); // Disable captcha if you want simpler submission
 
-    window.location.href = mailtoLink;
-    openSuccessModal();
+    fetch("https://formsubmit.co/ajax/Kadirojo2rt06@gmail.com", {
+        method: "POST",
+        body: formData
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success === "true" || data.success === true) {
+                openSuccessModal();
+                event.target.reset(); // Reset form
+            } else {
+                showToast('Gagal mengirim pesan. Silakan coba lagi. ❌');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Terjadi kesalahan koneksi. ❌');
+        })
+        .finally(() => {
+            // Restore button state
+            if (submitBtn) {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
 }
 
 function initContactForm() {
